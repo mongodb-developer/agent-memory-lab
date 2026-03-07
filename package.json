@@ -1,0 +1,18 @@
+{
+  "name": "agent-memory-lab",
+  "version": "1.0.0",
+  "description": "Engineering Short & Long Term Agent Memory using MongoDB",
+  "dependencies": {
+    "mongodb": "^6.12.0",
+    "@langchain/core": "^0.3.0",
+    "@langchain/langgraph": "^0.2.0",
+    "@langchain/langgraph-checkpoint-mongodb": "^0.0.2",
+    "@langchain/anthropic": "^0.3.0",
+    "@langchain/mongodb": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
