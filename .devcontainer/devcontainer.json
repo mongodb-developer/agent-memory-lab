@@ -9,11 +9,11 @@
     },
     "containerEnv": {
         "MONGODB_URI": "mongodb://admin:mongodb@localhost:27017/",
-        "NODE_PATH": "/workspaces/${localWorkspaceFolderBasename}/node_modules",
+        "NODE_PATH": "/opt/lab-deps/node_modules",
         "VOYAGE_API_KEY": "${localEnv:VOYAGE_API_KEY}",
         "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}"
     },
-    "postCreateCommand": "npm install && node .devcontainer/seed.js",
+    "postCreateCommand": "node .devcontainer/seed.js",
     "customizations": {
         "vscode": {
             "extensions": [

@@ -1,8 +1,8 @@
 services:
   lab-runner:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
     volumes:
       - ../..:/workspaces:cached
     depends_on:
@@ -13,7 +13,7 @@ services:
     network_mode: service:mongodb
     environment:
       - MONGODB_URI=mongodb://admin:mongodb@localhost:27017/?directConnection=true
-      - NODE_PATH=/workspaces/agent-memory-lab/node_modules
+      - NODE_PATH=/opt/lab-deps/node_modules
 
   mongodb:
     image: mongodb/mongodb-atlas-local:8.2.0
