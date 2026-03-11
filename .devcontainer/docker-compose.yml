@@ -1,19 +1,20 @@
 services:
   lab-runner:
     build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ../..:/workspaces:cached
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       mongodb:
         condition: service_healthy
-    user: "1000:100"
     command: sleep infinity
-    network_mode: service:mongodb
+    networks:
+      - lab
     environment:
-      - MONGODB_URI=mongodb://admin:mongodb@localhost:27017/?directConnection=true
-      - NODE_PATH=/opt/lab-deps/node_modules
+      - MONGODB_URI=mongodb://admin:mongodb@mongodb:27017/?directConnection=true
+      - NODE_PATH=/workspaces/agent-memory-lab/node_modules
 
   mongodb:
     image: mongodb/mongodb-atlas-local:8.2.0
@@ -23,8 +24,8 @@ services:
     environment:
       - MONGODB_INITDB_ROOT_USERNAME=admin
       - MONGODB_INITDB_ROOT_PASSWORD=mongodb
-      - INDEXING_VOYAGE_AI_API_KEY=${VOYAGE_API_KEY}
-      - QUERY_VOYAGE_AI_API_KEY=${VOYAGE_API_KEY}
+      - INDEXING_VOYAGE_AI_API_KEY=${VOYAGE_API_KEY:-}
+      - QUERY_VOYAGE_AI_API_KEY=${VOYAGE_API_KEY:-}
     ports:
       - "27017:27017"
     healthcheck:
@@ -33,6 +34,12 @@ services:
       timeout: 5s
       retries: 10
       start_period: 20s
+    networks:
+      - lab
+
+networks:
+  lab:
+    driver: bridge
 
 volumes:
   mongodb_data:
