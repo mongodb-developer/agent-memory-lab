@@ -7,3 +7,9 @@ RUN pip install --no-cache-dir \
     langgraph \
     langgraph-checkpoint-mongodb \
     requests
+
+# Symlink conda Python to standard paths so VS Code can discover it
+USER root
+RUN ln -s /opt/conda/bin/python /usr/local/bin/python \
+    && ln -s /opt/conda/bin/python /usr/local/bin/python3
+USER jovyan
