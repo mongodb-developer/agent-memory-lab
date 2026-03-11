@@ -1,6 +1,6 @@
 """
 Seed script: generates 100 realistic Airbnb-style listings and inserts them
-into voyage_lab.listings, mirroring the behaviour of seed.js.
+into agent_memory_lab.listings.
 """
 import os
 import random
@@ -202,18 +202,18 @@ def make_listing(i):
 def main():
     print('Connecting to MongoDB...')
     client = MongoClient(MONGODB_URI, appName='devrel-workshop-agentmemory-seed')
-    db     = client['voyage_lab']
+    db     = client['agent_memory_lab']
     coll   = db['listings']
 
     existing = coll.count_documents({})
     if existing > 0:
-        print(f'voyage_lab.listings already has {existing} documents — skipping seed.')
+        print(f'agent_memory_lab.listings already has {existing} documents — skipping seed.')
         client.close()
         return
 
     listings = [make_listing(i) for i in range(100)]
     result   = coll.insert_many(listings)
-    print(f'Inserted {len(result.inserted_ids)} listings into voyage_lab.listings.')
+    print(f'Inserted {len(result.inserted_ids)} listings into agent_memory_lab.listings.')
     client.close()
 
 
