@@ -9,10 +9,7 @@ services:
       mongodb:
         condition: service_healthy
     command: sleep infinity
-    networks:
-      - lab
-    environment:
-      - MONGODB_URI=mongodb://admin:mongodb@mongodb:27017/?directConnection=true
+    network_mode: service:mongodb
 
   mongodb:
     image: mongodb/mongodb-atlas-local:8.2.0
@@ -32,12 +29,6 @@ services:
       timeout: 5s
       retries: 10
       start_period: 20s
-    networks:
-      - lab
-
-networks:
-  lab:
-    driver: bridge
 
 volumes:
   mongodb_data:
