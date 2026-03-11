@@ -1,9 +1,9 @@
 FROM jupyter/base-notebook:latest
 
-# Install Node.js 20 via conda-forge
-RUN mamba install -y -c conda-forge nodejs=20 git \
-    && mamba clean --all -y
-
-# Install tslab globally and register TypeScript and JavaScript kernels
-RUN npm install -g tslab \
-    && tslab install --python=python3
+RUN pip install --no-cache-dir \
+    pymongo \
+    langchain \
+    langchain-anthropic \
+    langgraph \
+    langgraph-checkpoint-mongodb \
+    requests

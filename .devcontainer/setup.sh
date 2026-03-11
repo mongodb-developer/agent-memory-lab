@@ -1,5 +1,3 @@
 #!/bin/bash
 set -e
-
-npm install
-node .devcontainer/seed.js
+python .devcontainer/seed.py

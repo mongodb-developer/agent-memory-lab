@@ -13,7 +13,6 @@ services:
       - lab
     environment:
       - MONGODB_URI=mongodb://admin:mongodb@mongodb:27017/?directConnection=true
-      - NODE_PATH=/workspaces/agent-memory-lab/node_modules
 
   mongodb:
     image: mongodb/mongodb-atlas-local:8.2.0
