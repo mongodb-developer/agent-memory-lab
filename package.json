@@ -4,6 +4,7 @@
   "description": "Engineering Short & Long Term Agent Memory using MongoDB",
   "dependencies": {
     "mongodb": "^6.12.0",
+    "zod": "^3.23.0",
     "@langchain/core": "^0.3.0",
     "@langchain/langgraph": "^0.2.0",
     "@langchain/langgraph-checkpoint-mongodb": "^0.0.2",
